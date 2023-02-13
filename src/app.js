@@ -4,7 +4,7 @@ import cors from "cors";
 import joi from "joi";
 import bcrypt from "bcrypt";
 import { v4 as uuidV4 } from "uuid";
-import router from "./routes/app.routes";
+import router from "./routes/app.routes.js";
 
 const app = express();
 dotenv.config();

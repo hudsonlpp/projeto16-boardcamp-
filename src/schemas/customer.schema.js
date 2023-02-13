@@ -1,4 +1,4 @@
-import joi from 'joi';
+import joi from "joi";
 
 export const customerSchema = joi.object({
   name: joi.string().required(),

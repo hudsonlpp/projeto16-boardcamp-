@@ -4,7 +4,7 @@ async function handleDbError(error, res) {
   res.sendStatus(500);
 }
 
-export async function listCustomers(_req, res) {
+export async function customersList(_req, res) {
   try {
     const result = await db.query("SELECT * FROM customers");
     res.send(result.rows);
@@ -41,7 +41,7 @@ async function getCustomerById(id) {
 }
 
 
-export async function insertCustomer(req, res) {
+export async function getCostumer(req, res) {
   const { name, phone, cpf, birthday } = req.body;
   try {
     const existingCustomer = await db.query(

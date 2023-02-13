@@ -13,7 +13,7 @@ export async function listGames(_req, res) {
     return res.sendStatus(500);
   }
 }
-async function insertGame(req, res) {
+export async function insertGame(req, res) {
   const { name, image, stockTotal, pricePerDay } = req.body;
   
   const gameExists = await getGameByName(name);

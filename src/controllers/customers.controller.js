@@ -40,7 +40,6 @@ async function getCustomerById(id) {
   return result.rows[0];
 }
 
-
 export async function getCostumer(req, res) {
   const { name, phone, cpf, birthday } = req.body;
   try {
@@ -80,20 +79,6 @@ export async function updateCustomer(req, res) {
   } catch (error) {
     handleDbError(error, res);
   }
-}
-
-async function getCustomerById(id) {
-  if (!id || id < 1 || !Number.isSafeInteger(id)) {
-    throw new Error("Invalid customer ID");
-  }
-
-  const result = await db.query("SELECT * FROM customers WHERE id = $1", [
-    id,
-  ]);
-  if (result.rowCount === 0) {
-    return null;
-  }
-  return result.rows[0];
 }
 
 async function cpfExists(cpf, customerId) {

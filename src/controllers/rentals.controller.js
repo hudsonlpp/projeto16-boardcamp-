@@ -82,3 +82,51 @@ export async function finishRental(req, res) {
     res.sendStatus(500);
   }
 }
+
+
+export async function deleteRental(req, res) {
+  const rentalId = Number(req.params.id);
+
+  if (!isValidRentalId(rentalId)) {
+    return res.sendStatus(400);
+  }
+
+  try {
+    const rental = await getRental(rentalId);
+    if (!rental) {
+      return res.sendStatus(404);
+    }
+    if (!isRentalFinished(rental)) {
+      return res.sendStatus(400);
+    }
+    const deleted = await deleteRentalFromDb(rentalId);
+    if (deleted) {
+      return res.sendStatus(200);
+    }
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+}
+
+function isValidRentalId(rentalId) {
+  return rentalId && rentalId > 0 && Number.isSafeInteger(rentalId);
+}
+
+async function getRental(rentalId) {
+  const rentalExists = await db.query('SELECT * FROM rentals WHERE id = $1', [
+    rentalId,
+  ]);
+  return rentalExists.rowCount === 1 ? rentalExists.rows[0] : null;
+}
+
+function isRentalFinished(rental) {
+  return rental["returnDate"] !== null;
+}
+
+async function deleteRentalFromDb(rentalId) {
+  const deleteRental = await db.query('DELETE FROM rentals WHERE id = $1', [
+    rentalId,
+  ]);
+  return deleteRental.rowCount === 1;
+}

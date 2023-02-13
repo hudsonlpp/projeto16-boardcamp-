@@ -13,24 +13,26 @@ export async function listGames(_req, res) {
     return res.sendStatus(500);
   }
 }
-
-export async function insertGame(req, res) {
+async function insertGame(req, res) {
   const { name, image, stockTotal, pricePerDay } = req.body;
   
+  const gameExists = await getGameByName(name);
+  if (gameExists) {
+    return res.status(409).send();
+  }
+
   try {
-    const game = await getGameByName(name);
-    if (game) {
-      return res.sendStatus(409);
-    }
     const result = await db.query(
       'INSERT INTO games (name, image, "stockTotal", "pricePerDay") VALUES ($1, $2, $3, $4)',
       [name, image, stockTotal, pricePerDay]
     );
+
     if (result.rowCount === 0) {
-      return res.sendStatus(400);
+      return res.status(400).send();
     }
-    return res.sendStatus(201);
+
+    return res.status(201).send();
   } catch (error) {
-    return res.sendStatus(500);
+    return res.status(500).send();
   }
 }

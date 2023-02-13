@@ -1,10 +1,5 @@
 import { Router } from "express";
-import {
-  listRentals,
-  insertRental,
-  finishRental,
-  deleteRental,
-} from "../controllers/rentals.controllers.js";
+import { listRentals, insertRental, finishRental, deleteRental,} from "../controllers/rentals.controllers.js";
 import { validateSchema } from "../middlewares/validateSchema.middleware.js";
 import { insertRentalSchema } from "../schemas/rental.schema.js";
 

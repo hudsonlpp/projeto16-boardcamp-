@@ -4,11 +4,13 @@ import cors from "cors";
 import joi from "joi";
 import bcrypt from "bcrypt";
 import { v4 as uuidV4 } from "uuid";
+import router from "./routes/app.routes";
 
 const app = express();
 dotenv.config();
 app.use(cors());
 app.use(express.json());
+app.use(routers)
 
 let db;
 

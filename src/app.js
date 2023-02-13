@@ -12,16 +12,9 @@ app.use(express.json());
 
 let db;
 
-try {
-await mongoClient.connect();
-} catch (err) {
-console.log("Erro no mongo.conect", err.message);
-}
 
-db = mongoClient.db("DIRETORIOOOO");
-const talCollection = db.collection("COLLECTIONNNNN");
 
 // ROTAS:
 
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running in port: ${port}`));

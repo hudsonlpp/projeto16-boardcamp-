@@ -1,12 +1,38 @@
 {
   "name": "projeto16-boardcamp",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.0.1",
+    "pg": "^8.9.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hudsonlpp/projeto16-boardcamp-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hudsonlpp/projeto16-boardcamp-/issues"
+  },
+  "homepage": "https://github.com/hudsonlpp/projeto16-boardcamp-#readme"
 }
